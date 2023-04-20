@@ -51,27 +51,25 @@ def extract_max(arr, n, k):
     arr[0] = arr[n - 1]
     n -= 1
     restore_down(arr, n, 0, k)
+    del arr[-1]
     return max_elem, n
 
-
-def draw_heap(arr, k):
-    height = math.ceil(math.log(len(arr), k))
-    level = 0
-    element = 0
-    elements_in_level = 1
-    while element < n:
-        helper = (k**(height-level))
-        sys.stdout.write("  " * (helper//2))
-        for i in range(elements_in_level):
-            if element + i >= n:
-                break
-            sys.stdout.write(f"{arr[element+i]}")
-            sys.stdout.write(" "*(helper+(height-level)**k))
-        print()
-        element += elements_in_level
-        level += 1
-        elements_in_level *= k
-
+def draw(arr, k, elements=1, pos=0, prev_max_pos=0, indent=""):
+    if elements == 1:
+        print(arr[0])
+        elements = k
+        pos = k
+    for index in range(k):
+        if (pos < len(arr)):
+            print(indent, end="")
+            print("|----", end="")
+            print(arr[pos])
+            if prev_max_pos + elements + k * (pos - prev_max_pos - 1) + 1 < len(arr):
+                newpos = prev_max_pos + elements + k * (pos - prev_max_pos)
+                if index != k - 1: draw(arr, k, elements*k, newpos, prev_max_pos + elements, indent + "|    ")
+                else: draw(arr, k, elements*k, newpos, prev_max_pos + elements, indent + "     ")
+        pos -= 1
+    print(indent)
 
 arr = [4, 5, 6, 7, 8, 9, 10]
 k = 3
@@ -79,17 +77,28 @@ n = len(arr)
 
 build_heap(arr, n, k)
 print("Built Heap:")
-print(arr[:len(arr)])
+print(arr)
 
 elem = 3
 n = insert(arr, n, k, elem)
 print("\nHeap after insertion of", elem, ":")
-print(arr[:len(arr)])
-draw_heap(arr, k)
+print(arr)
+draw(arr, k)
 
 max_elem, n = extract_max(arr, n, k)
 print("\nExtracted max is", max_elem)
 print("Heap after extract max:")
-print(arr[:n])
+print(arr)
+draw(arr, k)
 
-draw_heap(arr, k)
+# test draw for 2
+tst2 = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+draw(tst2, 2)
+
+# test draw for 3
+tst3 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+draw(tst3, 3)
+
+# test draw for 7
+tst7 = [x for x in range(61)]
+draw(tst7, 7)
