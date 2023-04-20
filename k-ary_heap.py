@@ -43,6 +43,7 @@ def insert(arr, n, k, elem):
     arr.append(elem)
     n += 1
     restore_up(arr, n - 1, k)
+    return n
 
 
 def extract_max(arr, n, k):
@@ -50,7 +51,7 @@ def extract_max(arr, n, k):
     arr[0] = arr[n - 1]
     n -= 1
     restore_down(arr, n, 0, k)
-    return max_elem
+    return max_elem, n
 
 
 def draw_heap(arr, k):
@@ -58,13 +59,13 @@ def draw_heap(arr, k):
     level = 0
     element = 0
     elements_in_level = 1
-    while element < len(arr):
+    while element < n:
         helper = (k**(height-level))
         sys.stdout.write("  " * (helper//2))
         for i in range(elements_in_level):
-            if element + i >= len(arr):
+            if element + i >= n:
                 break
-            sys.stdout.write(f"{arr[level+i]}")
+            sys.stdout.write(f"{arr[element+i]}")
             sys.stdout.write(" "*(helper+(height-level)**k))
         print()
         element += elements_in_level
@@ -72,21 +73,23 @@ def draw_heap(arr, k):
         elements_in_level *= k
 
 
-arr = [4, 5, 6, 7, 8, 9, 10, 7, 9, 150, 75, 11]
-k = 7
+arr = [4, 5, 6, 7, 8, 9, 10]
+k = 3
+n = len(arr)
 
-build_heap(arr, len(arr), k)
+build_heap(arr, n, k)
 print("Built Heap:")
 print(arr[:len(arr)])
 
 elem = 3
-insert(arr, len(arr), k, elem)
+n = insert(arr, n, k, elem)
 print("\nHeap after insertion of", elem, ":")
 print(arr[:len(arr)])
+draw_heap(arr, k)
 
-max_elem = extract_max(arr, len(arr), k)
+max_elem, n = extract_max(arr, n, k)
 print("\nExtracted max is", max_elem)
 print("Heap after extract max:")
-print(arr[:len(arr)])
+print(arr[:n])
 
 draw_heap(arr, k)
