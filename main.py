@@ -56,16 +56,16 @@ def main():
     heap_2_ary_remove_time = []
     heap_5_ary_remove_time = []
     heap_7_ary_remove_time = []
-    heap.build_heap(heap_2_ary, 2, len(heap_2_ary))
-    heap.build_heap(heap_5_ary, 5, len(heap_5_ary))
-    heap.build_heap(heap_7_ary, 7, len(heap_7_ary))
+    new_2 = heap.build_heap(heap_2_ary, 2)
+    new_5 = heap.build_heap(heap_5_ary, 5)
+    new_7 = heap.build_heap(heap_7_ary, 7)
     for number in n:
         heap_2_ary_create_time.append(create_heap_time_measure(heap_2_ary[:number], 2)) # noqa 5501
         heap_5_ary_create_time.append(create_heap_time_measure(heap_5_ary[:number], 5)) # noqa 5501
         heap_7_ary_create_time.append(create_heap_time_measure(heap_7_ary[:number], 7)) # noqa 5501
-        heap_2_ary_remove_time.append(remove_time_measuer(heap_2_ary.copy(), number, 2)) # noqa 5501
-        heap_5_ary_remove_time.append(remove_time_measuer(heap_5_ary.copy(), number, 5)) # noqa 5501
-        heap_7_ary_remove_time.append(remove_time_measuer(heap_7_ary.copy(), number, 7)) # noqa 5501
+        heap_2_ary_remove_time.append(remove_time_measuer(new_2.copy(), number, 2)) # noqa 5501
+        heap_5_ary_remove_time.append(remove_time_measuer(new_5.copy(), number, 5)) # noqa 5501
+        heap_7_ary_remove_time.append(remove_time_measuer(new_7.copy(), number, 7)) # noqa 5501
     plot_create_time(heap_2_ary_create_time, heap_5_ary_create_time, heap_7_ary_create_time, "Building heaps") # noqa 5501
     plot_create_time(heap_2_ary_remove_time, heap_5_ary_remove_time, heap_7_ary_remove_time, "Remove") # noqa 5501
 
