@@ -24,7 +24,7 @@ def create_heap_time_measure(arr, k):
     gc_old = gc.isenabled()
     gc.disable()
     start = time.process_time()
-    heap.build_heap(arr, len(arr), k)
+    heap.build_heap(arr, k)
     stop = time.process_time()
     if gc_old:
         gc.enable()
