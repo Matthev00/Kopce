@@ -6,7 +6,7 @@ def restore_down(arr, length, index, k):
     child = [0] * (k + 1)
     while True:
         for i in range(1, k + 1):
-            child[i] = k * index + i if k * index + i < length else -1 # uzupełniamy wartościami dzieci
+            child[i] = k * index + i if k * index + i < length else -1 # uzupełniamy indeksami dzieci
 
         max_child, max_child_index = -1, 0
         for i in range(1, k + 1):
@@ -57,20 +57,19 @@ def extract_max(arr, n, k):
     del arr[-1]
     return max_elem, n
 
-def draw(arr, k, elements=1, pos=0, prev_max_pos=0, indent=""):
-    if elements == 1:
+def draw(arr, k, pos=0, indent=""):
+    if pos == 0:
         print(arr[0])
-        elements = k
         pos = k
     for index in range(k):
         if (pos < len(arr)):
             print(indent, end="")
             print("|----", end="")
             print(arr[pos])
-            if prev_max_pos + elements + k * (pos - prev_max_pos - 1) + 1 < len(arr):
-                newpos = prev_max_pos + elements + k * (pos - prev_max_pos)
-                if index != k - 1: draw(arr, k, elements*k, newpos, prev_max_pos + elements, indent + "|    ")
-                else: draw(arr, k, elements*k, newpos, prev_max_pos + elements, indent + "     ")
+            if k*pos + 1 < len(arr):
+                newpos = k * (pos + 1)
+                if index != k - 1: draw(arr, k, newpos, indent + "|    ")
+                else: draw(arr, k, newpos, indent + "     ")
         pos -= 1
     print(indent)
 
@@ -100,16 +99,15 @@ if __name__ == "__main__":
     # print(arr)
     # test draw for 2
     tst2 = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-    tst2 = build_heap(tst2, 2)
+    # tst2 = build_heap(tst2, 2)
     draw(tst2, 2)
 
     # test draw for 5
-    tst5 = [0,1,2,3,4,5]
-    tst5 = build_heap(tst5, 5)
-    print(tst5)
+    tst5 = [i for i in range(34)]
+    # tst5 = build_heap(tst5, 5)
     draw(tst5, 5)
 
     # test draw for 7
     tst7 = [x for x in range(61)]
-    tst7 = build_heap(tst7, 7)
+    #tst7 = build_heap(tst7, 7)
     draw(tst7, 7)
