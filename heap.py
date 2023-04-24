@@ -91,14 +91,14 @@ print("Heap after extract max:")
 print(arr)
 draw(arr, k)
 
-# test draw for 2
-tst2 = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-draw(tst2, 2)
+# # test draw for 2
+# tst2 = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+# draw(tst2, 2)
 
-# test draw for 3
-tst3 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
-draw(tst3, 3)
+# # test draw for 3
+# tst3 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+# draw(tst3, 3)
 
-# test draw for 7
-tst7 = [x for x in range(61)]
-draw(tst7, 7)
+# # test draw for 7
+# tst7 = [x for x in range(61)]
+# draw(tst7, 7)
