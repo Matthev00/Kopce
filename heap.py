@@ -99,15 +99,15 @@ if __name__ == "__main__":
     # print(arr)
     # test draw for 2
     tst2 = [0, 1, 2, 3, 4, 5, 6, 7, 8]
-    # tst2 = build_heap(tst2, 2)
+    tst2 = build_heap(tst2, 2)
     draw(tst2, 2)
 
     # test draw for 5
     tst5 = [i for i in range(34)]
-    # tst5 = build_heap(tst5, 5)
+    tst5 = build_heap(tst5, 5)
     draw(tst5, 5)
 
     # test draw for 7
     tst7 = [x for x in range(61)]
-    #tst7 = build_heap(tst7, 7)
+    tst7 = build_heap(tst7, 7)
     draw(tst7, 7)
